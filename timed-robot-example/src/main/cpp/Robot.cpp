@@ -61,6 +61,11 @@ void Robot::TeleopPeriodic() {
   if(controller.GetAButton() == true){
     motor1.Set(1);
   }
+  if(controller.GetBButton() == true){
+    motor1_encoder.SetPosition(0);
+  }
+
+  frc::SmartDashboard::PutNumber("motor position", motor1_encoder.GetPosition());
 }
 
 void Robot::DisabledInit() {}

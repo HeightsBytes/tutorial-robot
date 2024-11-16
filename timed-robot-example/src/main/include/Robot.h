@@ -35,7 +35,9 @@ class Robot : public frc::TimedRobot {
 
   // not auto gen for later
   frc::XboxController controller{1};
+
   rev::CANSparkMax motor1{1, rev::CANSparkMax::MotorType::kBrushless};
+  rev::SparkRelativeEncoder motor1_encoder = motor1.GetEncoder();
 
 
 };
