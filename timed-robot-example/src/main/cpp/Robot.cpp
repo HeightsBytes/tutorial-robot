@@ -7,6 +7,7 @@
 #include <fmt/core.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
+// at robot startup, sets up our SmartDashboard as mentioned earlier
 void Robot::RobotInit() {
   m_chooser.SetDefaultOption(kAutoNameDefault, kAutoNameDefault);
   m_chooser.AddOption(kAutoNameCustom, kAutoNameCustom);
@@ -57,15 +58,36 @@ void Robot::AutonomousPeriodic() {
 
 void Robot::TeleopInit() {}
 
+// this is where most of our code will go
+// run every 20ms
 void Robot::TeleopPeriodic() {
-  if(controller.GetAButton() == true){
-    motor1.Set(1);
-  }
-  if(controller.GetBButton() == true){
-    motor1_encoder.SetPosition(0);
+  // figure out if the A button is being pressed.
+  // to find function names for things such as this, assuming you are using visual studio code
+  // you can control click on the variable to find its defenition, and control click
+  // on its type in order to find the defenition of that class
+  // and find methods of that class from there
+  if(m_controller.GetAButton() == true){
+    // sets the motor to full speed
+    m_motor1.Set(1);
+  } else { // if the a button is not held
+    m_motor1.Set(0);
   }
 
-  frc::SmartDashboard::PutNumber("motor position", motor1_encoder.GetPosition());
+  // find if the B button is pressed
+  if(controller.GetBButton() == true){
+    // use the encoder to reset the motor to its starting position of 0 degrees
+    m_motor1_encoder.SetPosition(0);
+  }
+
+  // put a number on the SmartDashboard
+  frc::SmartDashboard::PutNumber(
+    // this number will be labeled "motor position"
+    "motor position", 
+    // and will contain the data is returned by rev::SparkRelativeEncoder::GetPosition();
+    // which is a function that gets the position of a motor
+    motor1_encoder.GetPosition()
+    );
+    // remember you can also control click on functions to see their defenitions and what inputs they take
 }
 
 void Robot::DisabledInit() {}
@@ -80,6 +102,7 @@ void Robot::SimulationInit() {}
 
 void Robot::SimulationPeriodic() {}
 
+// starts the robot when program is run
 #ifndef RUNNING_FRC_TESTS
 int main() {
   return frc::StartRobot<Robot>();
