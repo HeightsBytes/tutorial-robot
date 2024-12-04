@@ -59,7 +59,7 @@ void Robot::AutonomousPeriodic() {
 void Robot::TeleopInit() {}
 
 // this is where most of our code will go
-// run every 20ms
+// run every 20ms 
 void Robot::TeleopPeriodic() {
   // figure out if the A button is being pressed.
   // to find function names for things such as this, assuming you are using visual studio code
@@ -74,7 +74,7 @@ void Robot::TeleopPeriodic() {
   }
 
   // find if the B button is pressed
-  if(controller.GetBButton() == true){
+  if(m_controller.GetBButton() == true){
     // use the encoder to reset the motor to its starting position of 0 degrees
     m_motor1_encoder.SetPosition(0);
   }
@@ -85,7 +85,7 @@ void Robot::TeleopPeriodic() {
     "motor position", 
     // and will contain the data is returned by rev::SparkRelativeEncoder::GetPosition();
     // which is a function that gets the position of a motor
-    motor1_encoder.GetPosition()
+    m_motor1_encoder.GetPosition()
     );
     // remember you can also control click on functions to see their defenitions and what inputs they take
 }

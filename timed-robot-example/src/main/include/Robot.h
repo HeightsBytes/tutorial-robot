@@ -75,7 +75,7 @@ class Robot : public frc::TimedRobot {
   rev::CANSparkMax m_motor1{1, rev::CANSparkMax::MotorType::kBrushless};
   // defines the encoder of the motor
   // the encoder tells us thingss such as the position, rotation, and speed of the motor
-  rev::SparkRelativeEncoder m_motor1_encoder = motor1.GetEncoder();
+  rev::SparkRelativeEncoder m_motor1_encoder = m_motor1.GetEncoder();
 
   // go to src/main/cpp/Robot.cpp to see how all of these things are implemented.
 
